@@ -19,8 +19,9 @@ export default class historyItem extends React.Component{
         list[index].selected = !list[index].selected;
 
     }
-    historyTab=()=>{
+    historyTab=(it)=>{
         // alert(22)
+        console.log(it)
     }
     render(){
         const list = this.props.historylist;
