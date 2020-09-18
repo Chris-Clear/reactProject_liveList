@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 import '../style/home.scss'
 
 export default class historyItem extends React.Component{
@@ -11,30 +10,31 @@ export default class historyItem extends React.Component{
         this.props.history.push('/login')
     }
     componentDidMount(){
-        console.log(this.props)
+        console.log(this)
     }
     selectSwitch =(index)=>{
-        const list = this.props.historylist;
-        console.log(list,index)
+        let list = this.state.list;
         list[index].selected = !list[index].selected;
-
+        this.setState({
+            list:list
+        })
     }
-    historyTab=(it)=>{
-        // alert(22)
-        console.log(it)
+    historyTab=(index)=>{
+        console.log(2222222222)
     }
     render(){
         const list = this.props.historylist;
+        this.state.list = list;
         return list.map((item,index)=>{
             return <li key={index} id={item.id} className="active">
                     <p className="frist_head">
                         <span>{item.Group}</span>
-                        <img onClick={this.selectSwitch(index)} src={item.selected?require("../images/before.png"):require("../images/next.png")} className="next" />
+                        <img onClick={()=>{this.selectSwitch(index)}} src={item.selected?require("../images/before.png"):require("../images/next.png")} className="next" />
                     </p>
                     {item.selected?<ul className="small_title">
                         {item.list.map((it,idx)=>(
                             <a key={idx} className={it.liveLink}>
-                                <li onClick={this.historyTab(it)} id={it.id} className="twolevel_title center">
+                                <li onClick={()=>{this.historyTab(index)}} id={it.id} className="twolevel_title center">
                                     <div className="history_broadcastimg">
                                         <img src={it.themeImage} /><span></span>
                                     </div>
