@@ -17,6 +17,9 @@ const tabs = [
 ];
   
 const baseUrl = 'https://cib.feinno.net:19203'
+let vip=0;
+let mobileNo="";
+let pagination = {pageIndex:0,pageSize:10}
 export default class Home extends React.Component{
     state={
         tabIndex:0,
@@ -38,6 +41,10 @@ export default class Home extends React.Component{
         });
         // this.state.tabIndex = e;
         console.log(e,this.state.tabIndex)
+        if(e==1){
+            this.get_project(vip,mobileNo,pagination)
+            this.get_history(vip,mobileNo,pagination)
+        }
     }
     //点击查看更多
     tapMore = (e) =>{
@@ -46,9 +53,7 @@ export default class Home extends React.Component{
     componentDidMount(){
         console.log(this.state.tabIndex,12345)
         const url= baseUrl+"/h5_video/hginter/query";
-        let vip=0;
-        let mobileNo="";
-        let pagination = {pageIndex:0,pageSize:10}
+        
         console.log(this.props,11111,url)
         axios.post(url,{
             "channel":"1",
@@ -200,7 +205,7 @@ export default class Home extends React.Component{
                 <div className="l-pad32 p-b-20r">
                     <div className="clearfix subjectContent">
                         {that.projectList.slice(0,4).map((item,idx)=>(
-                            <Link  key={item.id} id={item.id} className="bannerWV fl" style={{backgroundImage: 'url(' + item.cardImage + ')' }} to={{pathname:'projectList', state:{name:item.topicName,id:item.id,img:item.coverImage}} }></Link>
+                            <Link  key={item.id} id={item.id} className="bannerWV fl" style={{backgroundImage: 'url(' + item.cardImage + ')' }} to={{pathname:'projectList', params:{name:item.topicName,id:item.id,img:item.coverImage}} }></Link>
                         ))}
                     </div>
                     {that.projectList.length>4?<Link className="around-center moreProject" to="moreProject">
@@ -218,7 +223,7 @@ export default class Home extends React.Component{
             </div>
       </Tabs>
     </div>
-    </section>
+    </section>  
     }
 }
 
