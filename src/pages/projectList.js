@@ -102,8 +102,6 @@ export default class projectList extends React.Component{
                     <i className="nodata_word">新的直播正在赶来...</i>
                 </p>:null}
             <div id="history" >
-                {/* <HistoryItem historylist={that.projectList}></HistoryItem>
-                <div className="moreTap around-center" >{that.moreText}</div> */}
                 <ul className="history l-pad32">
                     <HistoryItem historylist={that.projectList}></HistoryItem>
                     <div className="moreTap around-center" >{that.moreText}</div>
