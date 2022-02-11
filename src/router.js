@@ -6,6 +6,7 @@ import App from './pages/app'
 import Home from './pages/home'
 import projectList from './pages/projectList' 
 import moreProject from './pages/moreProject'
+import index from './pages/index'
 import login from './pages/login'
 import noMatch from './pages/noMatch'
 
@@ -20,6 +21,7 @@ function IRouter(){
             </Route>
             <Route path="/moreProject" component={moreProject}></Route>
             <Route path="/projectList" component={projectList}></Route>
+            <Route path="/index" component={index}></Route>
             <Route path="/login" component={login}></Route>
             <Route path="*" component={noMatch}></Route>
         </Switch>

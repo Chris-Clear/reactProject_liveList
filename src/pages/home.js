@@ -1,4 +1,5 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
+// import {useState,useEffect} from 'react';
 // import {Link,useParams, useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
@@ -41,7 +42,7 @@ export default class Home extends React.Component{
         });
         // this.state.tabIndex = e;
         console.log(e,this.state.tabIndex)
-        if(e==1){
+        if(e===1){
             this.get_project(vip,mobileNo,pagination)
             this.get_history(vip,mobileNo,pagination)
         }
@@ -63,7 +64,7 @@ export default class Home extends React.Component{
             "pagination":pagination, 
           }).then((response)=>{
             const res = response.data;
-            if(res.code==200){
+            if(res.code===200){
                 this.state.liveList = res.list; 
                 axios.post(url,{
                     "channel":"1",
@@ -73,7 +74,7 @@ export default class Home extends React.Component{
                     "pagination":pagination, 
                   }).then((response2)=>{
                     const res2 = response2.data;
-                    if(res2.code==200){
+                    if(res2.code===200){
                         this.setState({
                             toLiveList:res2.list
                         })
@@ -108,11 +109,11 @@ export default class Home extends React.Component{
           }).then((response)=>{
             const res = response.data;
             
-            if(res.code==200){
+            if(res.code===200){
                 
                 var map = {},
                             dest = [];
-                            if(pagination.pageIndex==0){
+                            if(pagination.pageIndex===0){
                                 for(var i = 0; i < res.list.length; i++){
                                     var ai = res.list[i];
                                     if(!map[ai.liveTime.substr(0,7)]){
@@ -125,7 +126,7 @@ export default class Home extends React.Component{
                                             for(var j = 0; j < dest.length; j++){
                                                 var dj = dest[j];
                                                 var l=dj.list[0].liveTime.substr(0,7)
-                                            if(l == ai.liveTime.substr(0,7)){
+                                            if(l === ai.liveTime.substr(0,7)){
                                                 dj.list.push(ai);
                                                 break;
                                             }
@@ -164,7 +165,7 @@ export default class Home extends React.Component{
             "pagination":pagination, 
           }).then((response)=>{
             const res = response.data;
-            if(res.code==200){
+            if(res.code===200){
                 this.setState({
                     projectList:res.list
                 })
@@ -196,7 +197,7 @@ export default class Home extends React.Component{
                     <LiveItem type={2} livelist={that.toLiveList}></LiveItem>
                     <div onClick={this.tapMore(1)} className="moreTap around-center">{that.moreText_zz}</div>
                 </ul>
-                {that.liveList.length==0&&that.toLiveList.length==0?<p className="no_data" style={{display: "block"}}>
+                {that.liveList.length===0&&that.toLiveList.length===0?<p className="no_data" style={{display: "block"}}>
                     <span className="nodata_img"></span>
                     <i className="nodata_word">新的直播正在赶来...</i>
                 </p>:null}
