@@ -8,7 +8,7 @@ import LiveItem from  '../components/liveItem'
 import HistoryItem from  '../components/historyItem'
 import 'antd-mobile/dist/antd-mobile.css'; 
 
-
+import JsonP from 'jsonp'
 
 import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
 
@@ -51,10 +51,17 @@ export default class Home extends React.Component{
     tapMore = (e) =>{
 
     }
+    getjsonp = () =>{
+        JsonP('https://app.cibresearch.com/home/getArticleList',{param:'callback'},function(err, data){
+ 
+            　　console.log(data)
+             
+            })
+    }
     componentDidMount(){
         console.log(this.state.tabIndex,12345)
         const url= baseUrl+"/h5_video/hginter/query";
-        
+        this.getjsonp()//测试
         console.log(this.props,11111,url)
         axios.post(url,{
             "channel":"1",
